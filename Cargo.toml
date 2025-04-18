@@ -1,13 +1,25 @@
 [workspace]
-members = [
-    "jupiter-swap-api-client",
-    "example",
-]
+members = ["jupiter-swap-api-client", "example"]
+resolver = "3"
 
 [workspace.package]
-edition = "2021"
+edition = "2024"
 
 [workspace.dependencies]
-solana-sdk = "~2.0"
-solana-client = "~2.0"
-solana-account-decoder = "~2.0"
+solana-sdk = "~2.1"
+solana-client = "~2.1"
+solana-account-decoder = "~2.1"
+
+
+[workspace.dev-dependencies]
+jupiter-swap-api-client-jup = { git = "https://github.com/jup-ag/jupiter-swap-api-client.git", package = "jupiter-swap-api-client" }
+criterion = { version = "0.5", features = [
+    "html_reports",
+    "async_futures",
+    "async_tokio",
+] }
+reqwest = { version = "~0.12.15", features = ["json"] }
+
+[[workspace.bench]]
+name = "benches"
+harness = false
